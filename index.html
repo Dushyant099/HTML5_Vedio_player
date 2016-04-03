@@ -1,0 +1,142 @@
+<!doctype html>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+<meta charset="utf-8">
+<title>Lab 5 By Dushyant Patel</title>
+     <script type="text/javascript">
+         window.onload = initEvents;
+         var btnPlay, video, playPosition, volumePosition;
+         function initEvents() {
+             video = document.getElementById('myVideo');
+             btnPlay = document.getElementById('btnPlay');
+             playPosition = document.getElementById('playPosition');
+             volumePosition = document.getElementById('volumePosition');
+
+             btnPlay.addEventListener('click', onplayClick);
+
+             video.addEventListener('timeupdate', onVideotimeupdate);
+             volumePosition.addEventListener('change', onVolumeChange);
+             video.addEventListener('click', onplayClick);
+             playPosition.addEventListener('change', onPlaypositionchange);
+             playPosition.addEventListener('mousedown', onPlaypositionMousedown);
+         }
+
+         function onplayClick() {
+             if (video.paused)
+                 playVideo();
+             else
+                 pauseVideo();
+
+         }
+         function onPlaypositionMousedown() {
+             pauseVideo();
+         }
+         function onPlaypositionchange() {
+             video.currentTime = (playPosition.value / 100) * video.duration;
+         }
+
+         function onVideotimeupdate() {
+             playPosition.value = (video.currentTime / video.duration) * 100;
+         }
+
+         function onVolumeChange() {
+             video.volume = volumePosition.value;
+         }
+
+         function playVideo() {
+             video.play();
+             btnPlay.src = 'img_elements/pauseBtn.png';
+         }
+         function pauseVideo() {
+             video.pause();
+             btnPlay.src = 'img_elements/playBtn.png';
+         }
+    </script>
+<style type="text/css">
+body{
+	margin:0px;
+	padding:0px;
+	background-color:#776a43;
+}
+
+.topArea{
+background-image: url('img_elements/bg_strips.jpg');
+background-repeat: repeat-x; 
+background-color: white;
+}
+    header {
+        padding:20px;
+    }
+.mainContent{
+	height:600px;
+	width: 960px; 
+	margin: 0px auto;
+    text-align: center;
+}
+.treeTops{
+height: 300px;
+background-image: url('img_elements/bg_tree.png'); 
+background-position: bottom; 
+background-repeat: repeat-x;
+}
+    video {
+        border:15px solid white;
+        background-color:black;
+        margin-bottom:20px;
+        box-shadow:5px 5px 10px #888;
+
+    }
+    .videoControls {
+        height: 60px;
+        width: 830px;
+        margin: 0px auto;
+        background-color: black;
+        line-height:60px;
+    }
+    #playPosition {
+        width:400px;
+    }
+    #volumePosition {
+        width:100px;
+    }
+
+        .videoControls > * {
+            vertical-align:middle;
+            margin:0px 10px;
+            padding-bottom:1px;
+        }
+</style>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:IsMyDocuments msdt:dt="string">1</mso:IsMyDocuments>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+
+<body>
+	<div class="topArea"> 
+    	<div class="mainContent"> 
+            <header>
+                <img alt="Adventure and greatness"  src="img_elements/banner.png" />
+            </header>
+            <video id="myVideo" width="800" height="450">
+                <source src="http://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">
+                <source src="http://media.w3.org/2010/05/sintel/trailer.webm" type="video/webm">
+                <source src="http://media.w3.org/2010/05/sintel/trailer.ogv" type="video/ogg">
+                Sorry your brouser dont suport HTML5 Videos
+            </video> 
+            <section class="videoControls">
+                <input type="image" src="img_elements/playBtn.png" id="btnPlay" />
+                <input type="range" id="playPosition" value="0" />
+                <img id="volumeLabel" src="img_elements/volumeLable.png" alt="Volume Label" />
+                <input type="range" id="volumePosition" min="0" max="1" step="0.1" value="1" />
+            </section>
+        </div> 
+		<div class="treeTops"> 
+
+		</div> 
+	</div> 
+   
+</body>
+</html>
